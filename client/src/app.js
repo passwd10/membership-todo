@@ -1,7 +1,6 @@
-const $app = document.getElementById('app');
+import MainPage from './pages/MainPage';
 
-$app.innerHTML = `
-  <div>
-    Hello World!
-  </div>
-`;
+(() => {
+  const $app = document.getElementById('app');
+  MainPage($app);
+})();

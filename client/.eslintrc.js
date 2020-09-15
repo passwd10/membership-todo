@@ -30,6 +30,7 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'key-spacing': ['error', { mode: 'strict' }],
     'arrow-spacing': ['error', { before: true, after: true }],
-    "eol-last": "error",
+    'eol-last': 'error',
+    quotes: ['error', 'single'],
   },
 };

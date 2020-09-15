@@ -1,13 +1,12 @@
-export default function KanbanBoard(parentNode, props) {
+import KanbanBoardButton from './KanbanBoardButton';
+
+export default function KanbanBoard({ title }) {
   const $kanbanBoard = document.createElement('div');
-  const title = props;
 
   const render = () => {
-    $kanbanBoard.innerHTML = `
-      ${title}
-      <button>버튼</button>
-    `;
-    return parentNode.appendChild($kanbanBoard);
+    $kanbanBoard.innerHTML = `${title}`;
+    $kanbanBoard.appendChild(KanbanBoardButton({ type: title }));
+    return $kanbanBoard;
   };
 
   return render();

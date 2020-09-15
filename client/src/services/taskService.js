@@ -9,7 +9,7 @@ const addTask = (taskState) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(taskState),
+    body: JSON.stringify({ taskState: taskState }),
   }).then((res => res.json()));
 };
 

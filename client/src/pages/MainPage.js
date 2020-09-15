@@ -1,12 +1,14 @@
+import KanbanBoard from '../components/KanbanBoard';
+
 export default function MainPage(parentNode) {
   const $mainPage = document.createElement('div');
 
   const render = () => {
-    $mainPage.innerHTML = `
-      메인페이지 입니다
-      <button>버튼</button>
-    `;
-    parentNode.appendChild($mainPage);
+    $mainPage.appendChild(KanbanBoard($mainPage, 'ToDo'));
+    $mainPage.appendChild(KanbanBoard($mainPage, 'Working'));
+    $mainPage.appendChild(KanbanBoard($mainPage, 'Done'));
+
+    return parentNode.appendChild($mainPage);
   };
 
   return render();

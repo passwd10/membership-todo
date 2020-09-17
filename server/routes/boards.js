@@ -21,7 +21,6 @@ router.put('/', async(req, res) => {
   isModify ? res.status(200).send() : res.status(500).send();
 });
 
-
 router.delete('/', async(req, res) => {
   const { boardId } = req.body;
   const isDelete = await deleteBoard(req.session.userId, boardId);

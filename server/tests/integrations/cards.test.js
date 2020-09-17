@@ -21,8 +21,9 @@ describe('/cards', () => {
 
   describe('POST', () => {
     it('returns cards', async() => {
-      const { statusCode } = await request(app).post('/cards/new').set('Cookie', cookie).send({ boardId: 1, cardContent: '알고리즘 공부하기' });
+      const { statusCode, body } = await request(app).post('/cards/new').set('Cookie', cookie).send({ boardId: 1, cardContent: '알고리즘 공부하기' });
       expect(statusCode).toBe(200);
+      expect(body).toEqual({ cardId: 1 });
     });
   });
 

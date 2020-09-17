@@ -39,10 +39,9 @@ const insertCards = async (allCards) => {
   }
 };
 
-const insertUserCard = async (userId, boardId, cardContent, priority) => {
+const insertUserCard = async (userId, boardId, cardId, cardContent, priority) => {
   try {
     const uid = await getUid(userId);
-    const cardId = await getCardId();
     const thisCard = {
       card_id: cardId,
       card_content: cardContent,
@@ -50,6 +49,10 @@ const insertUserCard = async (userId, boardId, cardContent, priority) => {
       users_uid: uid,
       boards_board_id: boardId,
     };
+
+    if (cardId === -1) {
+      thisCard.card_id = await getCardId();
+    }
 
     let allCards = [...await getCardsInfo(uid, boardId)].map(card => {
       if (thisCard.priority <= card.priority) {
@@ -65,7 +68,7 @@ const insertUserCard = async (userId, boardId, cardContent, priority) => {
 
     await deleteCardsInfo(uid, boardId);
     await insertCards(allCards);
-    return true;
+    return { cardId: thisCard.card_id };
   } catch (error) {
     console.log(Error(error));
     return false;

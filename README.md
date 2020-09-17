@@ -62,25 +62,28 @@
   - res: boardId
 - PUT(컬럼 제목 변경)
   - req: boardTitle
-  - res: 200
+  - res: 200 true
 - DELETE(컬럼 삭제)
   - req: boardId
-  - res: 200
+  - res: 200 true
 
 ### /cards
 
 - GET(모든 카드 가져오기)
   - req: -
   - res: cards
-- POST(새 카드 등록)
+- /new POST(새 카드 등록)
   - req: boardId, cardContent
   - res: cardId
+- POST(카드 이동)
+  - req: cardId, boardId, cardContent
+  - res: 200 true
 - PUT(카드 내용 수정)
   - req: cardId, cardContent
   - res: card
 - DELETE(카드 삭제)
   - req: cardId, boardId
-  - res: 200
+  - res: 200 true
 
 ### /actions
 

@@ -16,7 +16,7 @@ describe('/signIn', () => {
     it('returns 404 status code and false', async () => {
       const { body, statusCode } = await request(app).post('/signIn').send({ userId: 'test', userPassword: 'test1' });
 
-      expect(statusCode).toBe(404);
+      expect(statusCode).toBe(401);
       expect(body).toBe(false);
     }, 3000);
   });

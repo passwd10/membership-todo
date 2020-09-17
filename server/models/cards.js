@@ -72,16 +72,23 @@ const insertUserCard = async (userId, boardId, cardContent, priority) => {
   }
 };
 
-// const getUserCards = async (userId) => {
-//   try {
-//     const uid = await getUid(userId);
-//     const allBoards = { 'boards': [...await db.execute(query.getAllBoards, [uid])][0].map(v => v = { 'boardId': v.board_id, 'boardTitle': v.board_title }) };
-
-//     return allBoards;
-//   } catch (error) {
-//     console.log(Error(error));
-//   }
-// };
+const selectCards = async (userId) => {
+  try {
+    const uid = await getUid(userId);
+    return {
+      'cards': [...await db.execute(query.getCards, [uid])][0].map(card =>
+        card = {
+          card_id: card.card_id,
+          card_content: card.card_content,
+          priority: card.priority,
+          users_uid: card.users_uid,
+          boards_board_id: card.boards_board_id,
+        }),
+    };
+  } catch (error) {
+    console.log(Error(error));
+  }
+};
 
 // const updateUserCard = async (userId, boardId, boardTitle) => {
 //   try {
@@ -95,13 +102,6 @@ const insertUserCard = async (userId, boardId, cardContent, priority) => {
 // };
 
 const deleteUserCard = async (userId, cardId, boardId) => {
-  /*
-    1. uid구함
-    2. userId, boardId 로 카드 다 가져옴
-    3. cardId로 삭제
-    4. Priority 다 댕겨
-    5. 다시 올림
-  */
   try {
     const uid = await getUid(userId);
     const thisPriority = [...await getCardsInfo(uid, boardId)].filter(card => cardId === card.card_id)[0].priority;
@@ -124,4 +124,4 @@ const deleteUserCard = async (userId, cardId, boardId) => {
 };
 
 
-module.exports = { insertUserCard, deleteUserCard };
+module.exports = { insertUserCard, deleteUserCard, selectCards };

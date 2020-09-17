@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const { addCard, deleteCard } = require('../services/cardService');
+const { getCards, addCard, deleteCard } = require('../services/cardService');
+
+router.get('/', async (req, res) => {
+  const cards = await getCards(req.session.userId);
+
+  return res.status(200).send(cards);
+});
+
 
 router.post('/new', async (req, res) => {
   const { boardId, cardContent } = req.body;

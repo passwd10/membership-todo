@@ -10,10 +10,7 @@ const query = {
   getAllCardsInfo: 'SELECT * FROM cards where users_uid=? and boards_board_id=?;',
   deleteAllCardsInfo: 'delete from cards where users_uid=? and boards_board_id=?;',
   insertCardsInfo: 'INSERT INTO cards VALUES (?, ?, ?, ?, ?)',
-
-
-
-
+  getCards: 'SELECT * FROM cards WHERE users_uid=?;',
 };
 
 module.exports = query;

@@ -4,14 +4,14 @@
 
 ## 진행사항
 
-### 1일차 (9/15)
+### 1일차 (9/14)
 
 - [x] express로 API서버 개발환경 구축
 - [x] nodemon, eslint, env 설치
 - [x] NCP 서버 생성 및 SQL설치
 - [x] workbench로 로컬에서 SQL 원격접속
 
-### 2일차 (9/16)
+### 2일차 (9/15)
 
 - [x] sftp로 NCP에 서버 자동 배포
 - [x] webpack, babel 공부
@@ -20,11 +20,24 @@
 - [x] Server에서 간단한 service 함수 구현
 - [x] cors 설정 후 API서버와 통신
 
-### 3일차 (9/17)
+### 3일차 (9/16)
 
 - [x] DB 설계
 - [x] API 설계
 - [x] 로그인 API 구현
+- [ ] 서버 통합테스트 진행중
+
+### 4일차 (9/17)
+
+- [x] /board GET API
+- [x] /board POST API
+- [x] /board PUST API
+- [x] /board DELETE API
+- [x] /board/all DELETE API
+- [x] /card GET API
+- [x] /card POST API
+- [x] /card PUT API
+- [x] /card DELETE API
 - [ ] 서버 통합테스트 진행중
 
 ## DB
@@ -60,13 +73,13 @@
   - req: -
   - res: cards
 - POST(새 카드 등록)
-  - req: cardContent
-  - res: card
+  - req: boardId, cardContent
+  - res: cardId
 - PUT(카드 내용 수정)
   - req: cardId, cardContent
   - res: card
 - DELETE(카드 삭제)
-  - req: cardId
+  - req: cardId, boardId
   - res: 200
 
 ### /actions

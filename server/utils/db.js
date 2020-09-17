@@ -3,4 +3,6 @@ const query = require('../utils/queries');
 
 const getUid = async (userId) => [...await db.execute(query.getUID, [userId])][0][0].uid;
 
-module.exports = { getUid };
+const getRandomId = () => Math.floor(Math.random() * 1000);
+
+module.exports = { getUid, getRandomId };

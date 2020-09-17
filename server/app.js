@@ -9,6 +9,7 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const boardsRouter = require('./routes/boards');
 const signInRouter = require('./routes/signIn');
+const cardsRouter = require('./routes/cards');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/signIn', signInRouter);
 app.use('/boards', boardsRouter);
+app.use('/cards', cardsRouter);
 
 app.use((req, res, next) => {
   next(createError(404));

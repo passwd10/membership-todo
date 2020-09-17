@@ -5,7 +5,7 @@ const app = require('../../app');
 let cookie;
 
 describe('/boards', () => {
-  beforeEach(async(done) => {
+  beforeAll(async(done) => {
     const { headers } = await request(app).post('/signIn').send({ userId: 'test', userPassword: 'test' });
     cookie = headers['set-cookie'];
     done();

@@ -6,7 +6,6 @@ describe('/signIn', () => {
   describe('POST with correct id and password', () => {
     it('returns 200 status code and true', async () => {
       const { body, statusCode } = await request(app).post('/signIn').send({ userId: 'test', userPassword: 'test' });
-
       expect(statusCode).toBe(200);
       expect(body).toBe(true);
     });

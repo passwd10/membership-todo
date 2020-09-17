@@ -40,6 +40,22 @@ const selectBoards = async (userId) => {
   }
 };
 
+const updateBoard = async (userId, boardId, boardTitle) => {
+  try {
+    //UID를 가져옴
+    const getUID = `SELECT uid FROM users WHERE user_id='${userId}';`;
+    const uid = [...await db.query(getUID)][0][0].uid;
+
+    //업데이트
+    const updateBoardQuery = `UPDATE boards Set board_title='${boardTitle}' where users_uid=${uid} and board_id=${boardId};`;
+    await db.query(updateBoardQuery);
+    return true;
+  } catch (error) {
+    console.log(Error(error));
+    return false;
+  }
+};
+
 const deleteUserBoards = async (userId) => {
   try {
     //UID를 가져옴
@@ -47,8 +63,24 @@ const deleteUserBoards = async (userId) => {
     const uid = [...await db.query(getUID)][0][0].uid;
 
     //유저와관련한 컬럼삭제
-    const getAllBoards = `DELETE FROM boards WHERE users_uid=${uid};`;
-    await db.query(getAllBoards);
+    const deleteAllBoards = `DELETE FROM boards WHERE users_uid=${uid};`;
+    await db.query(deleteAllBoards);
+    return true;
+  } catch (error) {
+    console.log(Error(error));
+    return false;
+  }
+};
+
+const deleteUserBoard = async (userId, boardId) => {
+  try {
+    //UID를 가져옴
+    const getUID = `SELECT uid FROM users WHERE user_id='${userId}';`;
+    const uid = [...await db.query(getUID)][0][0].uid;
+
+    //특정 보드 삭제
+    const deleteBoard = `DELETE FROM boards WHERE users_uid=${uid} and board_id=${boardId};`;
+    await db.query(deleteBoard);
     return true;
   } catch (error) {
     console.log(Error(error));
@@ -57,5 +89,4 @@ const deleteUserBoards = async (userId) => {
 };
 
 
-
-module.exports = { insertBoard, selectBoards, deleteUserBoards };
+module.exports = { insertBoard, selectBoards, deleteUserBoards, deleteUserBoard, updateBoard };

@@ -14,7 +14,6 @@ describe('/boards', () => {
   describe('POST', () => {
     it('returns boardId', async() => {
       const { body, statusCode } = await request(app).post('/boards').set('Cookie', cookie).send({ boardTitle: 'Todo' });
-
       expect(statusCode).toBe(200);
       expect(body).toEqual({ boardId: 1 });
     });
@@ -33,17 +32,8 @@ describe('/boards', () => {
 
     it('returns all boards', async () => {
       const { body, statusCode } = await request(app).get('/boards').set('Cookie', cookie);
-
       expect(statusCode).toBe(200);
-      expect(body).toEqual({
-        boards: [
-          {
-            boardId: 1,
-            boardTitle: 'Todo',
-          },
-        ],
-      },
-      );
+      expect(body).toEqual({ boards: [{ boardId: 1, boardTitle: 'Todo' }] });
     });
 
     afterEach(async(done) => {
@@ -52,23 +42,34 @@ describe('/boards', () => {
     });
   });
 
+  describe('PUT /', () => {
+    beforeEach(async(done) => {
+      await request(app).post('/boards').set('Cookie', cookie).send({ boardTitle: 'Todo' });
+      done();
+    });
 
-  // describe('PUT /', () => {
-  //   it('returns 200 status', async () => {
-  //     const { statusCode } = await request(app).put('/boards').send({ boardId: 1 });
+    it('returns 200 status', async () => {
+      const { statusCode } = await request(app).put('/boards').set('Cookie', cookie).send({ boardId: 1, boardTitle: 'Done' });
+      expect(statusCode).toBe(200);
+    });
 
-  //     expect(statusCode).toBe(200);
-  //   });
-  // });
+    afterEach(async(done) => {
+      await request(app).delete('/boards/all').set('Cookie', cookie);
+      done();
+    });
+  });
 
+  describe('DELETE /', () => {
+    beforeEach(async(done) => {
+      await request(app).post('/boards').set('Cookie', cookie).send({ boardTitle: 'Todo' });
+      done();
+    });
 
-  // describe('DELETE /', () => {
-  //   it('returns 200 status', async () => {
-  //     const { statusCode } = await request(app).delete('/boards').send({ boardId: 1 });
-
-  //     expect(statusCode).toBe(200);
-  //   });
-  // });
+    it('returns 200 status', async () => {
+      const { statusCode } = await request(app).delete('/boards').set('Cookie', cookie).send({ boardId: 1 });
+      expect(statusCode).toBe(200);
+    });
+  });
 
   describe('DELETE /all', () => {
     beforeEach(async(done) => {

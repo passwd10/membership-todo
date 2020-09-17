@@ -90,16 +90,16 @@ const selectCards = async (userId) => {
   }
 };
 
-// const updateUserCard = async (userId, boardId, boardTitle) => {
-//   try {
-//     const uid = await getUid(userId);
-//     await db.execute(query.updateBoard, [boardTitle, uid, boardId]);
-//     return true;
-//   } catch (error) {
-//     console.log(Error(error));
-//     return false;
-//   }
-// };
+const updateUserCard = async (userId, cardId, cardContent) => {
+  try {
+    const uid = await getUid(userId);
+    await db.execute(query.updateCard, [cardContent, uid, cardId]);
+    return true;
+  } catch (error) {
+    console.log(Error(error));
+    return false;
+  }
+};
 
 const deleteUserCard = async (userId, cardId, boardId) => {
   try {
@@ -124,4 +124,4 @@ const deleteUserCard = async (userId, cardId, boardId) => {
 };
 
 
-module.exports = { insertUserCard, deleteUserCard, selectCards };
+module.exports = { insertUserCard, deleteUserCard, selectCards, updateUserCard };

@@ -11,6 +11,7 @@ const query = {
   deleteAllCardsInfo: 'delete from cards where users_uid=? and boards_board_id=?;',
   insertCardsInfo: 'INSERT INTO cards VALUES (?, ?, ?, ?, ?)',
   getCards: 'SELECT * FROM cards WHERE users_uid=?;',
+  updateCard: 'UPDATE cards Set card_content=? where users_uid=? and card_id=?;',
 };
 
 module.exports = query;

@@ -33,35 +33,11 @@ describe('/cards', () => {
     });
   });
 
-  // describe('PUT /', () => {
-  //   beforeEach(async(done) => {
-  //     await request(app).post('/cards').set('Cookie', cookie).send({ cardContent: 'Todo' });
-  //     done();
-  //   });
-
-  //   it('returns 200 status', async () => {
-  //     const { statusCode } = await request(app).put('/cards').set('Cookie', cookie).send({ cardId: 1, cardContent: 'Done' });
-  //     expect(statusCode).toBe(200);
-  //   });
-
-  //   afterEach(async(done) => {
-  //     await request(app).delete('/cards/all').set('Cookie', cookie);
-  //     done();
-  //   });
-  // });
-
-
-  // describe('DELETE /all', () => {
-  //   beforeEach(async(done) => {
-  //     await request(app).post('/cards').set('Cookie', cookie).send({ cardContent: 'Todo' });
-  //     done();
-  //   });
-
-  //   it('returns 200 status', async () => {
-  //     const { statusCode } = await request(app).delete('/cards/all').set('Cookie', cookie);
-  //     expect(statusCode).toBe(200);
-  //   });
-  // });
-
+  describe('PUT /', () => {
+    it('returns 200 status', async () => {
+      const { statusCode } = await request(app).put('/cards').set('Cookie', cookie).send({ cardId: 84, cardContent: 'Done' });
+      expect(statusCode).toBe(200);
+    });
+  });
 });
 

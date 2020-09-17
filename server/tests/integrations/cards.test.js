@@ -29,17 +29,17 @@ describe('/cards', () => {
   //   });
   // });
 
-  describe('POST', () => {
-    it('returns cards', async() => {
-      const { statusCode } = await request(app).post('/cards/new').set('Cookie', cookie).send({ boardId: 1, cardContent: '알고리즘 공부하기' });
-      expect(statusCode).toBe(200);
-    });
+  // describe('POST', () => {
+  //   it('returns cards', async() => {
+  //     const { statusCode } = await request(app).post('/cards/new').set('Cookie', cookie).send({ boardId: 1, cardContent: '알고리즘 공부하기' });
+  //     expect(statusCode).toBe(200);
+  //   });
 
-    // afterEach(async(done) => {
-    //   await request(app).delete('/cards/all').set('Cookie', cookie);
-    //   done();
-    // });
-  });
+  // afterEach(async(done) => {
+  //   await request(app).delete('/cards/all').set('Cookie', cookie);
+  //   done();
+  // });
+  // });
 
   // describe('PUT /', () => {
   //   beforeEach(async(done) => {
@@ -58,17 +58,12 @@ describe('/cards', () => {
   //   });
   // });
 
-  // describe('DELETE /', () => {
-  //   beforeEach(async(done) => {
-  //     await request(app).post('/cards').set('Cookie', cookie).send({ cardContent: 'Todo' });
-  //     done();
-  //   });
-
-  //   it('returns 200 status', async () => {
-  //     const { statusCode } = await request(app).delete('/cards').set('Cookie', cookie).send({ cardId: 1 });
-  //     expect(statusCode).toBe(200);
-  //   });
-  // });
+  describe('DELETE /', () => {
+    it('returns 200 status', async () => {
+      const { statusCode } = await request(app).delete('/cards').set('Cookie', cookie).send({ cardId: 82, boardId: 1 });
+      expect(statusCode).toBe(200);
+    });
+  });
 
   // describe('DELETE /all', () => {
   //   beforeEach(async(done) => {

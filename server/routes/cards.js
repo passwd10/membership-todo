@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { addCard } = require('../services/cardService');
+const { addCard, deleteCard } = require('../services/cardService');
 
 router.post('/new', async (req, res) => {
   const { boardId, cardContent } = req.body;
@@ -9,5 +9,20 @@ router.post('/new', async (req, res) => {
 
   return isCompleted ? res.status(200).send(true) : res.status(401).send(false);
 });
+
+router.post('/', async (req, res) => {
+  const { boardId, cardContent, priority } = req.body;
+  const isCompleted = await addCard(req.session.userId, boardId, cardContent, priority);
+
+  return isCompleted ? res.status(200).send(true) : res.status(401).send(false);
+});
+
+router.delete('/', async (req, res) => {
+  const { cardId, boardId } = req.body;
+  const isCompleted = await deleteCard(req.session.userId, cardId, boardId);
+
+  return isCompleted ? res.status(200).send(true) : res.status(401).send(false);
+});
+
 
 module.exports = router;

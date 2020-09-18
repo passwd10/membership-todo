@@ -81,11 +81,10 @@ const selectCards = async (userId) => {
     return {
       'cards': [...await db.execute(query.getCards, [uid])][0].map(card =>
         card = {
-          card_id: card.card_id,
-          card_content: card.card_content,
+          cardId: card.card_id,
+          cardContent: card.card_content,
           priority: card.priority,
-          users_uid: card.users_uid,
-          boards_board_id: card.boards_board_id,
+          boardId: card.boards_board_id,
         }),
     };
   } catch (error) {

@@ -44,6 +44,10 @@
 
 ![db](https://user-images.githubusercontent.com/52442237/93344069-36eed680-f86c-11ea-968c-e11b78ee3bc8.png)
 
+## Integration Test (jest)
+
+![integrationTests](https://user-images.githubusercontent.com/52442237/93548530-59830b80-f9a2-11ea-86de-7a47274be4fb.png)
+
 ## APIs
 
 ### /signIn
@@ -54,16 +58,16 @@
 
 ### /boards
 
-- GET(모든 컬럼 가져오기)
+- GET(모든 보드 가져오기)
   - req: -
   - res: boards
-- POST(새 컬럼 등록)
+- POST(새 보드 등록)
   - req: boardTitle
   - res: boardId
-- PUT(컬럼 제목 변경)
+- PUT(보드 제목 변경)
   - req: boardTitle
   - res: 200 true
-- DELETE(컬럼 삭제)
+- DELETE(보드 삭제)
   - req: boardId
   - res: 200 true
 

@@ -11,22 +11,27 @@ describe('/boards', () => {
     done();
   });
 
-  describe('POST', () => {
+  describe('POST /', () => {
+    afterEach(async(done) => {
+      await request(app).delete('/boards/all').set('Cookie', cookie);
+      done();
+    });
+
     it('returns boardId', async() => {
       const { body, statusCode } = await request(app).post('/boards').set('Cookie', cookie).send({ boardTitle: 'Todo' });
       expect(statusCode).toBe(200);
       expect(body).toEqual({ boardId: 1 });
     });
+  });
+
+  describe('GET /', () => {
+    beforeEach(async(done) => {
+      await request(app).post('/boards').set('Cookie', cookie).send({ boardTitle: 'Todo' });
+      done();
+    });
 
     afterEach(async(done) => {
       await request(app).delete('/boards/all').set('Cookie', cookie);
-      done();
-    });
-  });
-
-  describe('GET', () => {
-    beforeEach(async(done) => {
-      await request(app).post('/boards').set('Cookie', cookie).send({ boardTitle: 'Todo' });
       done();
     });
 
@@ -34,11 +39,6 @@ describe('/boards', () => {
       const { body, statusCode } = await request(app).get('/boards').set('Cookie', cookie);
       expect(statusCode).toBe(200);
       expect(body).toEqual({ boards: [{ boardId: 1, boardTitle: 'Todo' }] });
-    });
-
-    afterEach(async(done) => {
-      await request(app).delete('/boards/all').set('Cookie', cookie);
-      done();
     });
   });
 
@@ -48,14 +48,14 @@ describe('/boards', () => {
       done();
     });
 
-    it('returns 200 status', async () => {
-      const { statusCode } = await request(app).put('/boards').set('Cookie', cookie).send({ boardId: 1, boardTitle: 'Done' });
-      expect(statusCode).toBe(200);
-    });
-
     afterEach(async(done) => {
       await request(app).delete('/boards/all').set('Cookie', cookie);
       done();
+    });
+
+    it('returns 200 status', async () => {
+      const { statusCode } = await request(app).put('/boards').set('Cookie', cookie).send({ boardId: 1, boardTitle: 'Done' });
+      expect(statusCode).toBe(200);
     });
   });
 
@@ -82,6 +82,5 @@ describe('/boards', () => {
       expect(statusCode).toBe(200);
     });
   });
-
 });
 

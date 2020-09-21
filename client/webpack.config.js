@@ -28,6 +28,7 @@ module.exports = {
     stats: 'errors-only',
     historyApiFallback: true,
   },
+  devtool: 'cheap-eval-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',

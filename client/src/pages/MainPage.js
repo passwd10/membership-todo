@@ -1,14 +1,11 @@
-import KanbanBoard from '../components/KanbanBoard';
+import BoardAddButton from '../components/BoardAddButton';
 
-export default function MainPage(parentNode) {
+export default function MainPage() {
   const $mainPage = document.createElement('div');
 
   const render = () => {
-    $mainPage.appendChild(KanbanBoard({ title: 'ToDo' }));
-    $mainPage.appendChild(KanbanBoard({ title: 'Working' }));
-    $mainPage.appendChild(KanbanBoard({ title: 'Done' }));
-
-    return parentNode.appendChild($mainPage);
+    $mainPage.appendChild(BoardAddButton());
+    return $mainPage;
   };
 
   return render();

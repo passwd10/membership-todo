@@ -18,6 +18,7 @@ module.exports = {
     }, {
       test: /\.css$/,
       use: ['style-loader', 'css-loader'],
+      exclude: /node_modules/,
     }],
   },
   devServer: {
@@ -27,6 +28,7 @@ module.exports = {
     stats: 'errors-only',
     historyApiFallback: true,
   },
+  devtool: 'cheap-eval-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',

@@ -1,9 +1,6 @@
-import MainPage from './pages/MainPage';
-import LoginPage from './pages/LoginPage';
+import { router } from './router';
 
 (() => {
   const $app = document.getElementById('app');
-
-  localStorage.getItem('isLogin') === 'true' ?
-    $app.appendChild(MainPage()) : $app.appendChild(LoginPage());
+  router($app);
 })();

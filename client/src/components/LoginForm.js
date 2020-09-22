@@ -1,5 +1,4 @@
 import { signIn } from '../services/ loginService';
-import { redirectToHome } from '../utils/window';
 
 export default function LoginForm() {
   const $loginForm = document.createElement('form');
@@ -10,10 +9,8 @@ export default function LoginForm() {
     const userId = e.target.querySelector('#userId').value;
     const userPassword = e.target.querySelector('#userPassword').value;
     const isLogin = await signIn(userId, userPassword);
-    localStorage.setItem('isLogin', isLogin);
-
     if (isLogin) {
-      redirectToHome();
+      window.location.href = '/main';
     }
   };
 

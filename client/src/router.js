@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage';
 import ErrorPage from './pages/ErrorPage';
 
 const routes = [
+  { path: '/', page: LoginPage },
   { path: '/main', page: MainPage },
   { path: '/login', page: LoginPage },
 ];

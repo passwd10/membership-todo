@@ -7,7 +7,6 @@ const signIn = (userId, userPassword) => {
   return fetch(SIGNIN_URL, {
     method: 'POST',
     credentials: 'include',
-    // mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -19,7 +18,6 @@ const signOut = () => {
   return fetch(SIGNOUT_URL, {
     method: 'DELETE',
     credentials: 'include',
-    // mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },

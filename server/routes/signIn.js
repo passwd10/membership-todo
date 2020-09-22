@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   const { userId, userPassword } = req.body;
   const isLogin = await isLoginable(userId, userPassword);
   req.session.userId = userId;
-  return isLogin ? res.status(200).send(true) : res.status(401).send(false);
+  isLogin ? res.status(200).send(true) : res.status(401).send(false);
 });
 
 module.exports = router;

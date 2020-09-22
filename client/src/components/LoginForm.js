@@ -8,7 +8,10 @@ export default function LoginForm() {
 
     const userId = e.target.querySelector('#userId').value;
     const userPassword = e.target.querySelector('#userPassword').value;
-    await signIn(userId, userPassword);
+    const isLogin = await signIn(userId, userPassword);
+    if (isLogin) {
+      window.location.href = '/main';
+    }
   };
 
   const render = () => {

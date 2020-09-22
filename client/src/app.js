@@ -1,8 +1,6 @@
-import MainPage from './pages/MainPage';
-import LoginPage from './pages/LoginPage';
+import { router } from './router';
 
 (() => {
   const $app = document.getElementById('app');
-  $app.appendChild(MainPage());
-  $app.appendChild(LoginPage());
+  router($app);
 })();

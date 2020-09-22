@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage';
 
 (() => {
   const $app = document.getElementById('app');
-  $app.appendChild(MainPage());
-  $app.appendChild(LoginPage());
+
+  localStorage.getItem('isLogin') === 'true' ?
+    $app.appendChild(MainPage()) : $app.appendChild(LoginPage());
 })();

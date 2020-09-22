@@ -1,10 +1,15 @@
 import { signOut } from '../services/ loginService';
+import { redirectToHome } from '../utils/window';
 
 export default function LogoutButton() {
   const $logoutButton = document.createElement('button');
 
   const signOutEvent = async () => {
-    await signOut();
+    const isLogout = await signOut();
+    if (isLogout) {
+      localStorage.setItem('isLogin', false);
+      redirectToHome();
+    }
   };
 
   const render = () => {

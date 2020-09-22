@@ -1,11 +1,13 @@
 import API_SERVER_URL from './config';
 
-const URL = `${API_SERVER_URL}/signIn`;
+const SIGNIN_URL = `${API_SERVER_URL}/signIn`;
+const SIGNOUT_URL = `${API_SERVER_URL}/signOut`;
 
 const signIn = (userId, userPassword) => {
-  return fetch(URL, {
+  return fetch(SIGNIN_URL, {
     method: 'POST',
-    mode: 'cors',
+    credentials: 'include',
+    // mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -13,4 +15,16 @@ const signIn = (userId, userPassword) => {
   }).then((res => res.json()));
 };
 
-export { signIn };
+const signOut = () => {
+  return fetch(SIGNOUT_URL, {
+    method: 'DELETE',
+    credentials: 'include',
+    // mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((res => res.json()));
+};
+
+
+export { signIn, signOut };

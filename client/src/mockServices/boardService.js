@@ -1,6 +1,11 @@
+import { appendBoard } from '../components/KanbanBoard';
+
 class Board {
   constructor() {
-    this.boards = [];
+    this.boards = [{
+      index: 0,
+      boardTitle: 'Todo',
+    }];
   }
 
   getBoards() {
@@ -8,7 +13,9 @@ class Board {
   }
 
   addBoard(boardTitle) {
-    this.boards = [...this.boards, { index: this.boards.length, boardTitle: boardTitle }];
+    const newBoard = { index: this.boards.length, boardTitle: boardTitle };
+    this.boards = [...this.boards, newBoard];
+    appendBoard(newBoard);
   }
 
 }

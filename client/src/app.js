@@ -1,3 +1,4 @@
+import './styles/index.css';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import ErrorPage from './pages/ErrorPage';
@@ -24,7 +25,7 @@ const router = (currentPath) => {
 };
 
 (() => {
-  router('/');
+  router('/main');
 })();
 
 export { router };

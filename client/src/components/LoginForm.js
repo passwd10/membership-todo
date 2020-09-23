@@ -1,4 +1,5 @@
-import { signIn } from '../services/ loginService';
+import { signIn } from '../services/loginService';
+import { router } from '../app';
 
 export default function LoginForm() {
   const $loginForm = document.createElement('form');
@@ -10,7 +11,7 @@ export default function LoginForm() {
     const userPassword = e.target.querySelector('#userPassword').value;
     const isLogin = await signIn(userId, userPassword);
     if (isLogin) {
-      window.location.href = '/main';
+      router('/main');
     }
   };
 

@@ -1,4 +1,5 @@
-import { signOut } from '../services/ loginService';
+import { signOut } from '../services/loginService';
+import { router } from '../app';
 
 export default function LogoutButton() {
   const $logoutButton = document.createElement('button');
@@ -6,7 +7,7 @@ export default function LogoutButton() {
   const signOutEvent = async () => {
     const isLogout = await signOut();
     if (isLogout) {
-      window.location.href = '/login';
+      router('/login');
     }
   };
 

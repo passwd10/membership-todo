@@ -4,7 +4,13 @@ class Card {
       boardId: 0,
       cardId: 0,
       cardContent: '알고리즘 문제 풀기',
-    }];
+    },
+    {
+      boardId: 0,
+      cardId: 1,
+      cardContent: 'CS 공부하기',
+    },
+    ];
   }
 
   getCards() {

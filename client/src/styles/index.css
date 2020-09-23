@@ -19,3 +19,14 @@
   margin: 1rem;
   padding: 1rem;
 }
+
+.cardList {
+  padding: 0;
+}
+
+.card {
+  list-style: none;
+  border: 1px solid black;
+  padding: 28px;
+  margin: 12px 0;
+}

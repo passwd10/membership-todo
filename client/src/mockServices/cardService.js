@@ -1,3 +1,5 @@
+import { appendCard } from '../controlViews/append';
+
 class Card {
   constructor() {
     this.cards = [{
@@ -18,9 +20,10 @@ class Card {
   }
 
   addCard(boardId, cardContent) {
-    const newCardId = this.cards.filter(card => card.boardId === boardId).length;
+    const newCardId = this.cards.filter(card => card.boardId === Number(boardId)).length;
     const newCard = { boardId: boardId, cardId: newCardId, cardContent: cardContent };
     this.cards = [...this.cards, newCard];
+    appendCard(newCard);
   }
 
 }

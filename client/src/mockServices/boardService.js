@@ -1,4 +1,4 @@
-import { appendBoard } from '../components/KanbanBoard';
+import { appendBoard } from '../controlViews/append';
 
 class Board {
   constructor() {

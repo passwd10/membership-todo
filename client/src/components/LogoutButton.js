@@ -1,4 +1,4 @@
-import { signOut } from '../services/ loginService';
+import { signOut } from '../services/loginService';
 import { router } from '../app';
 
 export default function LogoutButton() {

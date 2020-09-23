@@ -8,9 +8,9 @@ export default function KanbanBoard() {
     const boards = board.getBoards();
     kanbanBoard.innerHTML = boards.reduce((acc, board) => {
       return acc +=
-      `<div id=board_${board.index}>
+      `<div class='board board_${board.index}'>
         ${board.boardTitle}
-        <button id=board_${board.index}_button>+</button>                
+        <button class='board_button board_${board.index}_button'>+</button>                
       </div>`;
     }, '');
     return kanbanBoard;
@@ -22,9 +22,9 @@ export default function KanbanBoard() {
 const appendBoard = ({ index, boardTitle }) => {
   const kanbanBoard = document.querySelector('.kanbanBoard');
   kanbanBoard.insertAdjacentHTML('beforeend',
-    `<div id=board_${index}>
+    `<div class='board board_${index}'>
         ${boardTitle}
-        <button id=board_${index}_button>+</button>
+        <button class='board_button board_${index}_button'>+</button>
       </div>`,
   );
 };

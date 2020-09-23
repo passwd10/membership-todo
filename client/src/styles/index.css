@@ -1,8 +1,21 @@
 .board_modal {
-  position: absolute;
-  top: 100px;
+  /* position: absolute; */
+  /* top: 100px; */
 }
 
 .hidden {
   display: none
+}
+
+.kanbanBoard {
+  display: flex;
+}
+
+.board {
+  text-align: center;
+  height: 40rem;
+  width: 20rem;
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
 }

@@ -1,48 +1,13 @@
 import board from '../mockServices/boardService';
 import card from '../mockServices/cardService';
 
+import { addBoard, addCard, cancelCard, deleteCard } from '../controlViews/boardEvents';
+
 export default function KanbanBoard() {
   const kanbanBoard = document.createElement('div');
   kanbanBoard.classList.add('kanbanBoard');
 
-  const addBoard = (boardId) => {
-    const board = kanbanBoard.querySelector(`.board_${boardId}`);
-    const boardHeader = board.querySelector('.board_header');
-
-    boardHeader.querySelector('.card_input').classList.remove('hidden');
-  };
-
-  const addCard = (boardId) => {
-    const board = kanbanBoard.querySelector(`.board_${boardId}`);
-    const cardContent = board.querySelector('.card_content_input').value;
-
-    card.addCard(Number(boardId), cardContent);
-    board.querySelector('.card_input').classList.add('hidden');
-  };
-
-  const cancelCard = (boardId) => {
-    const board = kanbanBoard.querySelector(`.board_${boardId}`);
-
-    board.querySelector('.card_input').classList.add('hidden');
-  };
-
-  const deleteCard = (boardId, cardId) => {
-    const board = kanbanBoard.querySelector(`.board_${boardId}`);
-    const cardList = board.querySelector('.cardList');
-    const deletedCard = cardList.querySelector(`.card_${boardId}_${cardId}`);
-
-    card.deleteCard(Number(boardId), Number(cardId));
-    cardList.removeChild(deletedCard);
-
-    const listCards = cardList.querySelectorAll('.card');
-
-    listCards.forEach((listCard, index) => {
-      const originClassName = listCard.classList[1];
-      listCard.classList.replace(originClassName, `card_${boardId}_${index}`);
-    });
-  };
-
-  const handleKanbanBoardEvents = (event) => {
+  const handleKanbanBoardClickEvents = (event) => {
     const boardClassName = event.target.closest('.board').className;
     const boardId = boardClassName[boardClassName.length - 1];
     const targetClassName = event.target.className;
@@ -65,7 +30,28 @@ export default function KanbanBoard() {
     }
   };
 
-  kanbanBoard.addEventListener('click', handleKanbanBoardEvents);
+  const handleKanbanBoardMouseDownEvents = (event) => {
+    const boardClassName = event.target.closest('.board').className;
+    const boardId = boardClassName[boardClassName.length - 1];
+    const targetClassName = event.target.className;
+
+    if (targetClassName.includes('card')) {
+      const board = document.querySelector(`.board_${boardId}`);
+      const cardList = board.querySelector('.cardList');
+      const card = cardList.querySelector(`.${targetClassName.split(' ')[1]}`);
+
+      const handleMouseMoveEvent = (e) => {
+        card.style.position = 'absolute';
+        card.style.top = `${e.clientY - 40}px`;
+        card.style.left = `${e.clientX - 135}px`;
+      };
+
+      card.addEventListener('mousemove', handleMouseMoveEvent);
+    }
+  };
+
+  kanbanBoard.addEventListener('click', handleKanbanBoardClickEvents);
+  kanbanBoard.addEventListener('mousedown', handleKanbanBoardMouseDownEvents);
 
   const render = () => {
     const boards = board.getBoards();

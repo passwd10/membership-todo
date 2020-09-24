@@ -24,6 +24,7 @@ const appendCard = ({ boardId, cardId, cardContent }) => {
   cardList.insertAdjacentHTML('beforeend',
     `<li class='card card_${boardId}_${cardId}'>
       ${cardContent}
+      <button class='delete_button'>X</button>
      </li>
     `,
   );

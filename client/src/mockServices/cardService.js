@@ -27,6 +27,17 @@ class Card {
     appendCard(newCard);
   }
 
+  deleteCard(boardId, cardId) {
+    this.cards = this.cards
+      .filter(card => card.boardId !== Number(boardId) || card.cardId !== Number(cardId))
+      .map(card => {
+        if (card.boardId === Number(boardId) && card.cardId > Number(cardId)) {
+          card.cardId -= 1;
+        }
+        return card;
+      });
+  }
+
 }
 
 const card = new Card();

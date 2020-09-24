@@ -26,6 +26,22 @@ export default function KanbanBoard() {
     board.querySelector('.card_input').classList.add('hidden');
   };
 
+  const deleteCard = (boardId, cardId) => {
+    const board = kanbanBoard.querySelector(`.board_${boardId}`);
+    const cardList = board.querySelector('.cardList');
+    const deletedCard = cardList.querySelector(`.card_${boardId}_${cardId}`);
+
+    card.deleteCard(Number(boardId), Number(cardId));
+    cardList.removeChild(deletedCard);
+
+    const listCards = cardList.querySelectorAll('.card');
+
+    listCards.forEach((listCard, index) => {
+      const originClassName = listCard.classList[1];
+      listCard.classList.replace(originClassName, `card_${boardId}_${index}`);
+    });
+  };
+
   const handleKanbanBoardEvents = (event) => {
     const boardClassName = event.target.closest('.board').className;
     const boardId = boardClassName[boardClassName.length - 1];
@@ -41,6 +57,11 @@ export default function KanbanBoard() {
 
     if (targetClassName === 'cancel_button') {
       cancelCard(boardId);
+    }
+
+    if (targetClassName === 'delete_button') {
+      const cardId = event.target.closest('.card').classList[1].split('_')[2];
+      deleteCard(boardId, cardId);
     }
   };
 

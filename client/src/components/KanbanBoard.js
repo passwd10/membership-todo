@@ -53,7 +53,11 @@ export default function KanbanBoard() {
     kanbanBoard.innerHTML = boards.reduce((acc, board) => {
       const boardCards = cards.filter(card => card.boardId === board.index);
       const boardCardsStr = boardCards.reduce((accCards, boardCard) => {
-        return accCards += `<li class='card card_${board.index}_${boardCard.cardId}'>${boardCard.cardContent}</li>`;
+        return accCards += `
+        <li class='card card_${board.index}_${boardCard.cardId}'>
+          ${boardCard.cardContent}
+          <button class='delete_button'>X</button>
+        </li>`;
       }, '');
 
       return acc +=
